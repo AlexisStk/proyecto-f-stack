@@ -1,0 +1,80 @@
+
+body{
+    
+    font-family: 'Roboto', sans-serif;
+    background-repeat: repeat;
+    /*background-size: 4%;*/
+    background-color:#FAFAFA;
+    background-image: url(../Images/fondo4.png);
+    
+}
+
+.propMainBody img{
+    margin-top: 30%;
+}
+
+.propPanelDescripcion{
+    margin-top:40%;
+}
+
+.propJuntar{
+    font-family: 'roboto';
+    color: #2F90D4;
+}
+
+.propPanelDescripcion .propTituloDescripcion{
+    font-size: 200%;
+    font-weight: bolder;
+    font-style: initial;
+}
+
+.propPanelDescripcion li{
+    font-size: 110%;
+    font-weight: bolder;
+}
+
+.propPanelFAQS{
+    margin-top: 10%;
+}
+
+.propPanelFAQS h2{
+    margin-bottom:50px;
+}
+
+.propPanelFAQS hr{
+    border-width: 1px;
+    border-color: black;
+}
+
+.propPanelFAQS .propPregunta{
+    font-size: 120%;
+    font-weight: bold;
+}
+
+.propPanelFAQS .propRespuesta{
+    font-style: italic;
+}
+
+.tachar{
+    text-decoration:line-through;
+}
+
+.propFormIniciarSesion{
+    margin-top: 40%;
+}
+
+.propFormIniciarSesion h2{
+    margin-bottom: 20px;
+}
+
+.propPanelRegistrarse{
+    margin-top: 40%;
+}
+.propPanelRegistrarse legend{
+    font-size: 200%;
+    font-weight: bold;
+}
+
+.propPanelRegistrarse input{
+    margin-bottom: 12px;
+}
