@@ -78,3 +78,7 @@ body{
 .propPanelRegistrarse input{
     margin-bottom: 12px;
 }
+
+li {
+    list-style: none;
+}
