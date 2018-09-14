@@ -60,7 +60,7 @@ body{
 }
 
 .propFormIniciarSesion{
-    margin-top: 40%;
+    margin-top: 30%;
 }
 
 .propFormIniciarSesion h2{
@@ -81,4 +81,12 @@ body{
 
 li {
     list-style: none;
+}
+
+.propCardBody{
+    background-color: rgba(8,106,135,0.85);
+}
+
+.propLabel{
+    padding: 5px;
 }
