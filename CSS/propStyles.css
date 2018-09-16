@@ -1,12 +1,12 @@
 
 body{
-    
+
     font-family: 'Roboto', sans-serif;
     background-repeat: repeat;
     /*background-size: 4%;*/
     background-color:#FAFAFA;
     background-image: url(../Images/fondo4.png);
-    
+
 }
 
 .propMainBody img{
@@ -68,7 +68,7 @@ body{
 }
 
 .propPanelRegistrarse{
-    margin-top: 40%;
+    margin-top: 25%;
 }
 .propPanelRegistrarse legend{
     font-size: 200%;
@@ -85,6 +85,7 @@ li {
 
 .propCardBody{
     background-color: rgba(8,106,135,0.85);
+    width: 100%;
 }
 
 .propLabel{

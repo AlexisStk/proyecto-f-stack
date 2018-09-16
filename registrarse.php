@@ -1,3 +1,16 @@
+<?php
+
+    require 'funciones.php';
+    require 'helpers.php';
+
+    if($_POST){
+
+        $errors = registrarValido($_POST);
+
+    }
+
+?>
+
 <!DOCTYPE html>
 
 <html lang="en">
@@ -12,7 +25,7 @@
 
     <link rel="stylesheet" href="CSS/propStyles.css">
     <!-- Google FONT - ROBOTO - -->
-    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 
     <title>juntAR!</title>
 </head>
@@ -37,13 +50,13 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="preguntasFrecuentes.html">FAQS</a>
-                        </li> 
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link" href="login.html">Login</a>
-                        </li> 
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link" href="registrarse.html">Registrate</a>
-                        </li> 
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -55,41 +68,52 @@
 
     <div class="container">
 
-            <div class="row propMainBody text-center">
-    
+            <div class="row propMainBody">
+
                     <div class="col-12 col-sm-12 col-md-6 col-lg-6">
                         <img class="img-fluid" src="Images/imgBody.png" alt="">
                     </div>
-        
+
                     <div class="col-12 col-sm-12 col-md-6 col-lg-6">
-                        
+
                         <div class="propPanelRegistrarse">
-                            
+
                             <div class="card">
-                                
+
                                 <div class="card-body propCardBody">
 
-                                    <legend>Se parte de junt<span class="propJuntar">AR!</span></legend>
-                                        
-                                    <form action="" method="">
-                                        <div class="row">
 
-                                            <div class="col-6 col-sm-6 col-md-6 col-lg-6 text-right">
-                                                <label class="propLabel" for="username">Nombre de usuario:</label> <br>
-                                                <label class="propLabel" for="email">E-Mail:</label> <br>
-                                                <label class="propLabel" for="password">Password:</label> <br>
-                                                <label class="propLabel" for="password">Re-Password:</label> <br>
-                                            </div>
+                                    <div class="text-center">
+                                        <legend>Se parte de junt<span class="propJuntar">AR!</span></legend>
+                                    </div>
 
-                                            <div class="col-6 col-sm-6 col-md-6 col-lg-6 text-left">
-                                                <input type="text" name="username" placeholder="Nombre de usuario"required> <br>
-                                                <input type="email" name="email" placeholder="Correo electronico" required> <br>
-                                                <input type="password" name="password" placeholder="Contraseña" required> <br>
-                                                <input type="password" name="password" placeholder="Repetir contraseña"> <br>
+                                    <form action="" method="POST">
+
+                                        <label class="propLabel" for="username">Nombre de usuario:</label>
+                                        <input type="text" name="username" placeholder="Nombre de usuario" value="<?=isset($errors['username'])?"":old('username');?>"> <br>
+                                        <?php if(isset($errors['username'])): ?>
+                                            <div class="alert alert-danger">
+                                                <?=$errors['username']; ?>
                                             </div>
-                                            
-                                            <input class="btn btn-secundary btn-lg mx-auto" type="submit" value="Registrate!"> <br>
-                                        </div>
+                                        <?php endif;?>
+                                        <label class="propLabel" for="email">E-Mail:</label>
+                                        <input type="email" name="email" placeholder="Correo electronico"value="<?=isset($errors['email'])?"":old('email');?>"> <br>
+                                        <?php if(isset($errors['email'])): ?>
+                                            <div class="alert alert-danger">
+                                                <?=$errors['email']; ?>
+                                            </div>
+                                        <?php endif;?>
+                                        <label class="propLabel" for="password">Password:</label>
+                                        <input type="password" name="password" placeholder="Contraseña"> <br>
+                                        <label class="propLabel" for="repassword">Re-Password:</label>
+                                        <input type="password" name="repassword" placeholder="Repetir contraseña"> <br>
+                                        <input type="checkbox" name="confTerms" value="">
+                                        <label for="confTerms">Acepto los términos y condiciones.</label><br>
+
+
+                                        <input class="btn btn-secundary btn-lg mx-auto" type="submit" value="Registrate!"> <br>
+
+
                                     </form>
                                 </div>
 
@@ -97,9 +121,9 @@
 
                         </div>
                     </div>
-        
+
                 </div>
-    
+
         </div>
 
 
