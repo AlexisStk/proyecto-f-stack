@@ -91,3 +91,11 @@ li {
 .propLabel{
     padding: 5px;
 }
+
+/**Pie de pagina**/
+.footer {
+    z-index: 10;
+    background: #343A40;
+    color: #fff;
+
+}
