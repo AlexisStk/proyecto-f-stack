@@ -6,7 +6,12 @@
     if($_POST){
 
         $errors = registrarValido($_POST);
+        $usuario = createUser($_POST);
+    }
 
+    if (count($errors == 0) ) {
+        saveUser($usuario);
+        redirect('login.html');
     }
 
 ?>
@@ -55,7 +60,7 @@
                             <a class="nav-link" href="login.html">Login</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="registrarse.html">Registrate</a>
+                            <a class="nav-link" href="registrarse.php">Registrate</a>
                         </li>
                     </ul>
                 </div>

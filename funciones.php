@@ -57,5 +57,21 @@
         return  $errors;
     }
 
+    function CreateUser($data){
+        $usuario=[
+            'username'=> $data['username'],
+            'email'=> $data['email'],
+            'password'=> password_hash($data['password'], PASSWORD_DEFAULT)
+            
+        ];
+
+        return $usuario;
+    }
+
+
+    function saveUser($user){
+        $jsonUser=json_encode($user); //recibe el array que tengo createUser lo convierto en json..
+        file_put_contents('user.json', $json, PHP_EOL, FILE_APPEND); 
+    }
 
 ?>

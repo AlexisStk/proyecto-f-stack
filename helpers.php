@@ -14,4 +14,10 @@ function old($field)
     }
 }
 
+function redirect($url)//funcion para redirigir de una pag a otra
+{
+    header('Location: ' . $url);
+    exit;
+}
+
 ?>
