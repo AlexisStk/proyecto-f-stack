@@ -29,17 +29,17 @@
 
                 <div class="collapse navbar-collapse" id="collapse_target">
 
-                    <a class="navbar-brand" href="index.html"><img src="Images/logo.png"></a>
+                    <a class="navbar-brand"href="index.php"><img src="Images/logo.png"></a>
 
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="index.html">Home</a>
+                            <a class="nav-link" href="index.php">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="preguntasFrecuentes.html">FAQS</a>
+                            <a class="nav-link" href="preguntasFrecuentes.php">FAQS</a>
                         </li> 
                         <li class="nav-item">
-                            <a class="nav-link" href="login.html">Login</a>
+                            <a class="nav-link" href="login.php">Login</a>
                         </li> 
                         <li class="nav-item">
                             <a class="nav-link" href="registrarse.php">Registrate</a>
@@ -56,29 +56,45 @@
 
         <div class="row propMainBody text-center">
 
-            <div class="col-12 col-sm-12 col-md-6 col-lg-6">
-                <img class="img-fluid" src="Images/imgBody.png" alt="">
-            </div>
-
-            <div class="col-12 col-sm-12 col-md-6 col-lg-6">
-
-                <div class="propPanelDescripcion">
-                    <ul> <p class="propTituloDescripcion">¡Tu red social de Juntadas!</p>
-                        <li>¿Queres organizar una mateada?</li>
-                        <li>¿Queres arreglar una salida?</li>
-                        <li>¿Estás buscando jugadores para un partido de futbol?</li>
-                    </ul>
-
-                    <a type="button" class="btn btn-secundary btn-lg btn-block" href="registrarse.php" role="button">¡Registrate</a>
+                <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                    <img class="img-fluid" src="Images/imgBody.png" alt="">
                 </div>
-                
-            </div>
+    
+                <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+    
+                    <div class="propFormIniciarSesion ">
 
-        </div>
+                        <div class="card">
+
+                            <div class="card-body propCardBody">
+                                
+                                <h2>Iniciar Sesión</h2>
+
+                                <form action="" method="">
+
+                                    <label for="">Correo Electronico</label><br>
+                                    <input type="email" placeholder="ejemplo@ejemplo.com" required><br><br>
+                                    <label for="">Contraseña</label><br>
+                                    <input type="password" placeholder="" required><br><br>
+                                    <input type="checkbox" name="" value="">
+                                    <label for="">Recordarme</label><br><br>
+
+                                    <input class="btn btn-secundary btn-lg" type="submit" value="Iniciar session"><br><br>
+                                    
+                                    <a href="#">¿Olvidaste la contraseña?</a><br>
+                                        
+                                </form>
+
+                            </div>
+                        </div>
+
+                    </div>
+                    
+                </div>
+    
+            </div>
 
     </div>
-
-    <hr>
 
 
     <!-- JavaScript -->
