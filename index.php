@@ -1,5 +1,5 @@
-<!DOCTYPE html>
 
+<!DOCTYPE html>
 <html lang="en">
 <head>
 
@@ -30,17 +30,17 @@
 
                 <div class="collapse navbar-collapse" id="collapse_target">
 
-                    <a class="navbar-brand" href="index.html"><img src="Images/logo.png"></a>
+                    <a class="navbar-brand" href="index.php"><img src="Images/logo.png"></a>
 
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="index.html">Home</a>
+                            <a class="nav-link" href="index.php">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="preguntasFrecuentes.html">FAQS</a>
+                            <a class="nav-link" href="preguntasFrecuentes.php">FAQS</a>
                         </li> 
                         <li class="nav-item">
-                            <a class="nav-link" href="login.html">Login</a>
+                            <a class="nav-link" href="login.php">Login</a>
                         </li> 
                         <li class="nav-item">
                             <a class="nav-link" href="registrarse.php">Registrate</a>
