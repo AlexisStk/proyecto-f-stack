@@ -6,12 +6,27 @@
     if($_POST){
 
         $errors = registrarValido($_POST);
-        $usuario = createUser($_POST);
-    }
 
-    if (count($errors == 0) ) {
-        saveUser($usuario);
-        redirect('login.php');
+        $usuario = createUser($_POST);
+
+        if($_FILES['userAvatar']['error']==0){
+
+            $avatarErrors = avatarValido($_POST);
+
+            $usuario['userAvatar'] = getPerfilPath($_POST);
+
+            if(!Empty($avatarErrors)){
+                $errors = array_merge($errors,$avatarErrors);
+            }
+         }
+   
+         if (count($errors) == 0)  {
+
+            saveUser($usuario);
+            redirect('login.php');
+            
+         }
+
     }
 
 ?>
@@ -29,7 +44,6 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
     <link rel="stylesheet" href="CSS/propStyles.css">
-    <link rel="stylesheet" href="CSS/footer.css">
     <!-- Google FONT - ROBOTO - -->
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 
@@ -93,7 +107,7 @@
                                         <legend>Se parte de junt<span class="propJuntar">AR!</span></legend>
                                     </div>
 
-                                    <form action="" method="POST">
+                                    <form action="" method="POST" enctype="multipart/form-data">
 
                                         <label class="propLabel" for="username">Nombre de usuario:</label>
                                         <input type="text" name="username" placeholder="Nombre de usuario" value="<?=isset($errors['username'])?"":old('username');?>"> <br>
@@ -102,19 +116,45 @@
                                                 <?=$errors['username']; ?>
                                             </div>
                                         <?php endif;?>
+
                                         <label class="propLabel" for="email">E-Mail:</label>
                                         <input type="email" name="email" placeholder="Correo electronico"value="<?=isset($errors['email'])?"":old('email');?>"> <br>
+
                                         <?php if(isset($errors['email'])): ?>
                                             <div class="alert alert-danger">
                                                 <?=$errors['email']; ?>
                                             </div>
                                         <?php endif;?>
+
                                         <label class="propLabel" for="password">Password:</label>
                                         <input type="password" name="password" placeholder="Contraseña"> <br>
+
+                                        <?php if(isset($errors['password'])): ?>
+                                            <div class="alert alert-danger">
+                                                <?=$errors['password']; ?>
+                                            </div>
+                                        <?php endif;?>
+
                                         <label class="propLabel" for="repassword">Re-Password:</label>
                                         <input type="password" name="repassword" placeholder="Repetir contraseña"> <br>
+
+                                        <?php if(isset($errors['password'])): ?>
+                                            <div class="alert alert-danger">
+                                                <?=$errors['password']; ?>
+                                            </div>
+                                        <?php endif;?>
+
+                                        <label for="userAvatar">Foto de Perfil</label>
+                                        <input type="file" name="userAvatar"> <br>
+
                                         <input type="checkbox" name="confTerms" value="">
                                         <label for="confTerms">Acepto los términos y condiciones.</label><br>
+
+                                        <?php if(isset($errors['confTerms'])): ?>
+                                            <div class="alert alert-danger">
+                                                <?=$errors['confTerms']; ?>
+                                            </div>
+                                        <?php endif;?>
 
 
                                         <input class="btn btn-secundary btn-lg mx-auto" type="submit" value="Registrate!"> <br>
@@ -131,53 +171,52 @@
                 </div>
 
         </div>
-        <hr>
     <section>
         <!-- Footer -->
-<footer class="page-footer font-small blue pt-4">
+        <footer class="page-footer font-small blue pt-4">
 
-    <div class="container-fluid text-center text-md-left">
+            <div class="container-fluid text-center text-md-left">
 
-      <div class="row">
+            <div class="row">
 
-        <div class="col-md-6 mt-md-0 mt-3">
+                <div class="col-md-6 mt-md-0 mt-3">
 
-          <h5 class="text-uppercase">JuntAR!</h5>
-          <p>Esta es una red social que te sera util para organizar una juntada con tus amigos o con personas con los mismo gustos de manera facil y rapida.</p>
+                <h5 class="text-uppercase">JuntAR!</h5>
+                <p>Esta es una red social que te sera util para organizar una juntada con tus amigos o con personas con los mismo gustos de manera facil y rapida.</p>
 
-        </div>
+                </div>
 
-        <hr class="clearfix w-100 d-md-none pb-3">
+                <hr class="clearfix w-100 d-md-none pb-3">
 
-        <div class="col-md-3 mb-md-0 mb-3">
-   
-            <h5 class="text-uppercase">Info</h5>
+                <div class="col-md-3 mb-md-0 mb-3">
+        
+                    <h5 class="text-uppercase">Info</h5>
 
-            <ul class="list-unstyled">
-              <li>Contactanos: juntar!@gmail.com</li>
-              <li>
-                <a href="preguntasFrecuentes.html" class="link">Preguntas Frecuentes</a>
-              </li>
-              <li>
-                <a href="registrarse.php" class="link" >Registrate Gratis!</a>
-              </li>
-              <li>
-                <a href="login.php" class="link" >Logueate aca!</a>
-              </li>
-            </ul>
+                    <ul class="list-unstyled">
+                    <li>Contactanos: juntar!@gmail.com</li>
+                    <li>
+                        <a href="preguntasFrecuentes.php" class="link">Preguntas Frecuentes</a>
+                    </li>
+                    <li>
+                        <a href="registrarse.php" class="link" >Registrate Gratis!</a>
+                    </li>
+                    <li>
+                        <a href="login.php" class="link" >Logueate aca!</a>
+                    </li>
+                    </ul>
 
-          </div>
+                </div>
 
-      </div>
+            </div>
 
-    </div>
+            </div>
 
-    <!-- Copyright -->
-    <div class="footer-copyright text-center py-3">© 2018 Copyright:
-      <a href="index.html"> JuntAR!</a>
-    </div>
+            <!-- Copyright -->
+            <div class="footer-copyright text-center py-3">© 2018 Copyright:
+            <a href="index.html"> JuntAR!</a>
+            </div>
 
-  </footer>
+        </footer>
     </section>
 
 

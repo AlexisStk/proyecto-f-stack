@@ -1,14 +1,34 @@
+<?php
+    require 'funciones.php';
+
+    if($_POST){
+    
+        $usuario = getUserEmail($_POST['email']);
+
+        if($usuario !== null) {
+            if(password_verify($_POST['password'], $usuario['password']) == true){
+                logIn($usuario);
+                redirect('perfil.php');
+            }
+        }else{
+            $error = "Usuario o password incorrecto.";
+        }
+
+    }
+    
+
+?>
+
 <!DOCTYPE html>
 
 <html lang="en">
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <!-- Bootstrap -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https:/stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
     <link rel="stylesheet" href="CSS/propStyles.css">
     <link rel="stylesheet" href="CSS/footer.css">
@@ -71,16 +91,23 @@
                                 
                                 <h2>Iniciar Sesión</h2>
 
-                                <form action="" method="">
+                                <form action="" method="POST">
 
                                     <label for="">Correo Electronico</label><br>
-                                    <input type="email" placeholder="ejemplo@ejemplo.com" required><br><br>
+                                    <input type="email" name="email" placeholder="ejemplo@ejemplo.com"><br><br>
                                     <label for="">Contraseña</label><br>
-                                    <input type="password" placeholder="" required><br><br>
+                                    <input type="password" name="password" placeholder=""><br><br>
                                     <input type="checkbox" name="" value="">
                                     <label for="">Recordarme</label><br><br>
 
-                                    <input class="btn btn-secundary btn-lg" type="submit" value="Iniciar session"><br><br>
+                                    <?php if($error!=""): ?>
+                                        <div class="alert alert-danger">
+                                            <?=$error; ?>
+                                        </div>
+                                    <?php endif;?>
+
+                                    <input class="btn btn-secundary btn-lg" type="submit" value="Iniciar sesion"><br><br>
+                                    <!-- <input class="btn btn-secundary btn-lg mx-auto" type="submit" value="Registrate!"> <br> -->
                                     
                                     <a href="#">¿Olvidaste la contraseña?</a><br>
                                         
