@@ -2,6 +2,10 @@
 
     require 'funciones.php';
 
+    if(isLogged()){
+        redirect('perfil.php');
+    }
+
     if($_POST){
 
         $errors = registrarValido($_POST);
