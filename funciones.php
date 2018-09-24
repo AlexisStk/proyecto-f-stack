@@ -1,11 +1,6 @@
 <?php
-    //
-    // $sa['username'] = "92MauroCAI";
-    // $sa['email'] = "92MauroCAI@gmail.com";
-    // $sa['password'] = "asdasd123";
-    // $sa['repassword'] = "asdasd123";
-    //
-    // registrarValido($sa);
+    session_start();
+    require 'helpers.php';
 
     function registrarValido($data){
         // Con esta funcion verificamos si los datos enviados al registrarse son validos.
@@ -173,6 +168,7 @@
     }
 
     function getUserEmail($data){
+
         $users = getUsersJSON();
 
         foreach($users as $arrUser){
@@ -180,7 +176,6 @@
                 return $arrUser;
             }
         }
-
         return null;
     }
 
@@ -198,19 +193,28 @@
     }
 
     function logIn($user){
+
         $_SESSION['email'] = $user['email'];
+
         setcookie('email', $user['email'], time() + 3600 * 24 * 7, "/");
+
     }
 
     function logOut(){
-
         if(!isset($_SESSION)) {
             session_start();
         }
         session_destroy();
         setcookie('email', null, time() -1);
-        redirect('register.php');
+        redirect('registrarse.php');
 
+    }
+
+    function isLogged(){
+        if(isset($_SESSION['email'])){
+            return true;
+        }
+        return false;
     }
 
 

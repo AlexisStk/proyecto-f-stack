@@ -20,4 +20,6 @@ function redirect($url)//funcion para redirigir de una pag a otra
     exit;
 }
 
+
+
 ?>

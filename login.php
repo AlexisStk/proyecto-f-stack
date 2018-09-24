@@ -1,18 +1,22 @@
 <?php
     require 'funciones.php';
 
+
     if($_POST){
-    
+
         $usuario = getUserEmail($_POST['email']);
 
         if($usuario !== null) {
             if(password_verify($_POST['password'], $usuario['password']) == true){
                 logIn($usuario);
                 redirect('perfil.php');
+            }else{
+                $error = "Usuario o password incorrecto.";
             }
         }else{
             $error = "Usuario o password incorrecto.";
         }
+
 
     }
     
@@ -21,55 +25,13 @@
 
 <!DOCTYPE html>
 
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
-    <!-- Bootstrap -->
-    <link rel="stylesheet" href="https:/stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-
-    <link rel="stylesheet" href="CSS/propStyles.css">
-    <link rel="stylesheet" href="CSS/footer.css">
-    <!-- Google FONT - ROBOTO - -->
-    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> 
-
-    <title>juntAR!</title>
-</head>
+    <?php require 'head.php'; ?>
 
 <body>
 
     <div class="mainHeader">
 
-        <nav class="navbar fixed-top navbar-expand-md navbar-dark bg-dark">
-            <div class="container">
-                <button class="navbar-toggler" data-toggle="collapse" data-target="#collapse_target">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="collapse_target">
-
-                    <a class="navbar-brand"href="index.php"><img src="Images/logo.png"></a>
-
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="index.php">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="preguntasFrecuentes.php">FAQS</a>
-                        </li> 
-                        <li class="nav-item">
-                            <a class="nav-link" href="login.php">Login</a>
-                        </li> 
-                        <li class="nav-item">
-                            <a class="nav-link" href="registrarse.php">Registrate</a>
-                        </li> 
-                    </ul>
-                </div>
-            </div>
-
-        </nav>
+        <?php require 'navbar.php'; ?>
 
     </div>
 
@@ -93,12 +55,12 @@
 
                                 <form action="" method="POST">
 
-                                    <label for="">Correo Electronico</label><br>
-                                    <input type="email" name="email" placeholder="ejemplo@ejemplo.com"><br><br>
-                                    <label for="">Contraseña</label><br>
-                                    <input type="password" name="password" placeholder=""><br><br>
+                                    <label for="email">Correo Electronico</label><br>
+                                    <input type="email" name="email" id="email" placeholder="ejemplo@ejemplo.com"><br><br>
+                                    <label for="password">Contraseña</label><br>
+                                    <input type="password" name="password" id="password"><br><br>
                                     <input type="checkbox" name="" value="">
-                                    <label for="">Recordarme</label><br><br>
+                                    <label for="checkbox">Recordarme</label><br><br>
 
                                     <?php if($error!=""): ?>
                                         <div class="alert alert-danger">
@@ -124,53 +86,9 @@
 
     </div>
     
-    <hr>
+
     <section>
-        <!-- Footer -->
-<footer class="page-footer font-small blue pt-4">
-
-    <div class="container-fluid text-center text-md-left">
-
-      <div class="row">
-
-        <div class="col-md-6 mt-md-0 mt-3">
-
-          <h5 class="text-uppercase">JuntAR!</h5>
-          <p>Esta es una red social que te sera util para organizar una juntada con tus amigos o con personas con los mismo gustos de manera facil y rapida.</p>
-
-        </div>
-
-        <hr class="clearfix w-100 d-md-none pb-3">
-
-        <div class="col-md-3 mb-md-0 mb-3">
-   
-            <h5 class="text-uppercase">Info</h5>
-
-            <ul class="list-unstyled">
-              <li>Contactanos: juntar!@gmail.com</li>
-              <li>
-                <a href="preguntasFrecuentes.html" class="link">Preguntas Frecuentes</a>
-              </li>
-              <li>
-                <a href="registrarse.php" class="link" >Registrate Gratis!</a>
-              </li>
-              <li>
-                <a href="login.php" class="link" >Logueate aca!</a>
-              </li>
-            </ul>
-
-          </div>
-
-      </div>
-
-    </div>
-
-    <!-- Copyright -->
-    <div class="footer-copyright text-center py-3">© 2018 Copyright:
-      <a href="index.html"> JuntAR!</a>
-    </div>
-
-  </footer>
+        <?php require 'footer.php'; ?>
     </section>
 
     <!-- JavaScript -->
