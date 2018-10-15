@@ -21,7 +21,7 @@
                 <ul class="list-unstyled">
                 <li>Contactanos: juntar!@gmail.com</li>
                 <li>
-                    <a href="preguntasFrecuentes.html" class="link">Preguntas Frecuentes</a>
+                    <a href="preguntasFrecuentes.php" class="link">Preguntas Frecuentes</a>
                 </li>
                 <li>
                     <a href="registrarse.php" class="link" >Registrate Gratis!</a>

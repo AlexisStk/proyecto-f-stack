@@ -35,13 +35,13 @@
         //Email OK!
 
         $password = $data['password'];
-        $rePassword = $data['repassword'];
+        $cpassword = $data['cpassword'];
 
         if(strlen($password) < 8 || strlen($password) > 12){
             $errors['password']="La password debe tener entre 8 y 12 caracteres.";
         }
 
-        if($rePassword != $password){
+        if($cpassword != $password){
             $errors['password']="Las passwords no coinciden.";
         }
 
