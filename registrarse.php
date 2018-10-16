@@ -8,7 +8,13 @@
 
     if($_POST){
 
-        $errors = registrarValido($_POST);
+        $errors = [];
+        
+        //instancio mi objeto 
+        $usuario = new User ($_POST['username'],$_POST['email'],$_POST['password']);
+
+        $errors = Validate::registerValidate($usuario,$_POST);
+       
 
         $usuario = createUser($_POST);
 

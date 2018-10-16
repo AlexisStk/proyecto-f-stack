@@ -9,7 +9,7 @@ class Validate
 
     public static function imageValidate($file)
     {
-        //...
+        
     }
 
     public static function passwordMatch($data)
