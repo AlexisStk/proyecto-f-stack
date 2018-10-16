@@ -1,6 +1,7 @@
 <?php
 
 require 'helpers.php';
+require 'funciones.php';
 require 'Classes/User.php';
 require 'Classes/Auth.php';
 require 'Classes/JSONDB.php';

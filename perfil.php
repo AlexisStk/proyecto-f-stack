@@ -1,21 +1,21 @@
 <?php
-    require 'funciones.php';
-
-    if(isLogged()){
-
-        $user = getUserEmail($_SESSION['email']);
-
-        if($user['userAvatar']!= null){
-            $pathAvatar = $user['userAvatar'];;
-        }else{
-            $pathAvatar = 'perfilDefault.jpeg';
+    //require 'funciones.php';
+    require 'loader.php';
+    if (Auth::guest()) {
+        redirect('login.php');
+    }
+    if(isset($_SESSION['email'])) {
+        $usuarioArray = $db->emailDbSearch($_SESSION['email']);
+        $user = new User($usuarioArray['username'], $usuarioArray['email'], $usuarioArray['password']);
+        $username = $user->getUsername();
+        if ($user->getAvatar() !== null) {
+            $avatar = $user->getAvatar();
+            echo $avatar;
+            exit;
         }
 
-    }else{
-        //Toca de aca
-        redirect('registrarse.php');
     }
-?>
+?> 
 <!DOCTYPE html>
 
     <?php require 'head.php'; ?>
@@ -34,7 +34,7 @@
             <div class="col-3 col-sm-3 col-md-3 col-lg-3">
                 
                 <div class="card">
-                    <p>Bienvenido <?= $user['username'] ;?>!</p>
+                    <p>Bienvenido <?= $username ;?>!</p>
 
                     <img class="card-img-top" src="imgPerfil/<?=$pathAvatar;?>" alt="avatar default"> <br>
 

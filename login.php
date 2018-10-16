@@ -1,28 +1,36 @@
 <?php
-    require 'funciones.php';
+//require 'funciones.php';
+require 'loader.php';
 
-    if(isLogged()){
-        redirect('perfil.php');
-    }
+if(Auth::check()) {
+    redirect('perfil.php');
+}
 
+if($_POST) {
 
-    if($_POST){
+    $arrayErr = [];
 
-        $usuario = getUserEmail($_POST['email']);
+    $usuarioArray = $db->emailDbSearch($_POST['email']);
 
-        if($usuario !== null) {
-            if(password_verify($_POST['password'], $usuario['password']) == true){
-                logIn($usuario);
-                redirect('perfil.php');
-            }else{
-                $error = "Usuario o password incorrecto.";
-            }
+    $error = 'Usuario o Clave incorrectos.';
+
+    if($usuarioArray != null){
+
+        $userAux = new User($usuarioArray['username'], $usuarioArray['email'],$usuarioArray['password'],$usuarioArray['avatar']);
+
+        if(validate::loginValidate($_POST['password'],$userAux)){
+            Auth::login($userAux);
+            redirect('perfil.php');
         }else{
-            $error = "Usuario o password incorrecto.";
+            $arrayErr['login'] = $error;
         }
 
-
+    }else{
+        $arrayErr['login'] = $error;
     }
+
+}
+
     
 
 ?>
@@ -66,9 +74,9 @@
                                     <input type="checkbox" name="" value="">
                                     <label for="checkbox">Recordarme</label><br><br>
 
-                                    <?php if($error!=""): ?>
+                                    <?php if(isset($arrayErr)): ?>
                                         <div class="alert alert-danger">
-                                            <?=$error; ?>
+                                            <?=$arrayErr['login']; ?>
                                         </div>
                                     <?php endif;?>
 

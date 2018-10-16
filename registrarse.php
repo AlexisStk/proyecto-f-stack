@@ -1,44 +1,43 @@
 <?php
 
-    require 'funciones.php';
 
-    if(isLogged()){
+    //require 'funciones.php';
+    require 'loader.php';
+
+    if(Auth::check()) {
         redirect('perfil.php');
     }
 
     if($_POST){
 
         $errors = [];
-        
-        //instancio mi objeto 
-        $usuario = new User ($_POST['username'],$_POST['email'],$_POST['password']);
+        //De entrada instancio mi usuario
+        $usuario = new User($_POST['username'], $_POST['email'], $_POST['password']);
 
-        $errors = Validate::registerValidate($usuario,$_POST);
-       
+        //Genero los errores si los hubiera
+        $errors = Validate::registerValidate($usuario, $_POST, $db);
 
-        $usuario = createUser($_POST);
-
-        if($_FILES['userAvatar']['error']==0){
-
-            $avatarErrors = avatarValido($_POST);
-
-            $usuario['userAvatar'] = getPerfilPath($_POST);
-
-            if(!Empty($avatarErrors)){
-                $errors = array_merge($errors,$avatarErrors);
+        if($_FILES['avatar']['error'] == 0) {
+            $avatarErrors = $db->saveAvatar($_POST);
+            if(count($errors) === 0 ) {
+                $avatar = $db->photopath($_POST);
+                $usuario->setAvatar($avatar);
             }
-         }
-   
-         if (count($errors) == 0)  {
+        }
 
-            saveUser($usuario);
+        if(!Empty($avatarErrors)){
+            $errors = array_merge($errors, $avatarErrors);
+        }
+
+        if (count($errors) === 0) {
+            $usuarioArray = $db->createUser($usuario);
+            $db->saveUser($usuarioArray);
             redirect('login.php');
-            
-         }
-
+        }
+        
     }
-
-?>
+       
+    ?>
 
 <!DOCTYPE html>
 
@@ -77,7 +76,10 @@
                                     <form action="" method="POST" enctype="multipart/form-data">
 
                                         <label class="propLabel" for="username">Nombre de usuario:</label>
+
+
                                         <input type="text" name="username" placeholder="Nombre de usuario" value="<?=isset($errors['username'])?"":old('username');?>"> <br>
+
                                         <?php if(isset($errors['username'])): ?>
                                             <div class="alert alert-danger">
                                                 <?=$errors['username']; ?>
@@ -102,24 +104,24 @@
                                             </div>
                                         <?php endif;?>
 
-                                        <label class="propLabel" for="repassword">Re-Password:</label>
-                                        <input type="password" name="repassword" placeholder="Repetir contraseña"> <br>
+                                        <label class="propLabel" for="cpassword">Re-Password:</label>
+                                        <input type="password" name="cpassword" placeholder="Repetir contraseña"> <br>
 
-                                        <?php if(isset($errors['password'])): ?>
+                                        <?php if(isset($errors['cpassword'])): ?>
                                             <div class="alert alert-danger">
-                                                <?=$errors['password']; ?>
+                                                <?=$errors['cpassword']; ?>
                                             </div>
                                         <?php endif;?>
 
-                                        <label for="userAvatar">Foto de Perfil</label>
-                                        <input type="file" name="userAvatar"> <br>
+                                        <label for="avatar">Foto de Perfil</label>
+                                        <input type="file" name="avatar"> <br>
 
-                                        <input type="checkbox" name="confTerms" value="">
+                                        <input type="checkbox" name="confirm" value="">
                                         <label for="confTerms">Acepto los términos y condiciones.</label><br>
 
-                                        <?php if(isset($errors['confTerms'])): ?>
+                                        <?php if(isset($errors['confirm'])): ?>
                                             <div class="alert alert-danger">
-                                                <?=$errors['confTerms']; ?>
+                                                <?=$errors['confirm']; ?>
                                             </div>
                                         <?php endif;?>
 

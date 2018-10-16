@@ -1,7 +1,5 @@
 <?php
-
-    require 'funciones.php';
-
-    logOut();
-
+require 'loader.php';
+Auth::logout();
+redirect('login.php');
 ?>

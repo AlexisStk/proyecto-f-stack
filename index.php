@@ -1,6 +1,7 @@
 <?php
 
-    require 'funciones.php';
+    require 'loader.php';
+    
 
     if(isLogged()){
         redirect('perfil.php');
